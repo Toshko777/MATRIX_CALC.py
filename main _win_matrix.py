@@ -189,51 +189,6 @@ def get_matrix():   #el sedi za element||| tazi functiq shte e za wzemaneto na v
 
     global global_y
 
-    en1=textbox1.get()
-    en2=textbox2.get()
-    en3=textbox3.get()
-    en4=textbox4.get()
-    en5=textbox5.get()
-    en6=textbox6.get()
-    en7=textbox7.get()
-    en8=textbox8.get()
-    en9=textbox9.get()
-    
-
-    el1 = el2 = el3 = el4 = el5 = el6 = el7 = el8 = el9 = None
-
-
-    for cheky in range(9):
-        if en1 != "":
-            el1=int(textbox1.get()) 
-            print(cheky)
-        elif en2 != "":
-            el2=int(textbox2.get())
-            print(cheky)
-        elif en3 != "":
-            el3=int(textbox3.get())
-            print(cheky)
-        elif en4 != "":
-            el4=int(textbox4.get())
-            print(cheky)
-        elif en5 != "":
-            el5=int(textbox5.get())
-            print(cheky)
-        elif en6 != "":
-            el6=int(textbox6.get()) #3|2
-            print(cheky)
-        elif en7 != "":
-            el7=int(textbox7.get()) #1|3
-            print(cheky)
-        elif en8 != "":
-            el8=int(textbox8.get()) #2|3
-            print(cheky)
-        elif en9 != "":
-            el9=int(textbox9.get()) #3|3
-            print(cheky)
-
-
-
 
     for row in range(global_x):
         arr=[]
@@ -254,6 +209,18 @@ def get_matrix():   #el sedi za element||| tazi functiq shte e za wzemaneto na v
             
             elif row == 2 and column == 0:
                 arr.append(textbox5.get()) #3|1
+            
+            elif row == 2 and column ==1:
+                arr.append(textbox6.get()) #3|2
+            
+            elif row == 2 and column == 2:
+                arr.append(textbox9.get()) #3|3
+            
+            elif row == 0 and column == 2:
+                arr.append(textbox7.get()) #1|3
+
+            elif row ==1 and column == 2:
+                arr.append(textbox8.get()) #2|3
 
 
 
@@ -262,7 +229,7 @@ def get_matrix():   #el sedi za element||| tazi functiq shte e za wzemaneto na v
 
     for row in range(global_x):
         for column in range(global_y):
-            print(matrix1[row][column], end='')  
+            print("|",matrix1[row][column],"|", end='')  
         print()
 
     button1.destroy()
