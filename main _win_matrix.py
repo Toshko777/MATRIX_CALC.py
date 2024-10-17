@@ -271,7 +271,7 @@ button1= tk.Button(root, text="ENTER el", command=get_matrix)
 button1.place(x=200, y= 200)
 
 
-
+#hi
 
 #starting the window
 root.mainloop()
