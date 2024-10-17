@@ -64,7 +64,7 @@ def txt_in2():
 def txt_in3():
     
     textbox3.place(x=100, y=30) #1|2
-    textbox3.config(width=10)
+    textbox3.config(width=7)
 
 def txt_in4():
     
