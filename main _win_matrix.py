@@ -3,8 +3,11 @@ import subprocess
 from tkinter import messagebox
 
 def show_error():
-    # Display an error message box
+    # Display an greshka message box------ murzi me da e poveche ot 3x3
     messagebox.showerror("Error", "An unexpected error occurred.")
+
+def show_warning():
+    messagebox.showwarning("Warning", "The textbox is empty!")
 
 #creating the window
 root = tk.Tk()
@@ -25,9 +28,9 @@ label2.place(x=100, y=15)
 label3 = tk.Label(root, text="Enter Matrix")
 label3.place(x=50, y=0)
 
-# Add a textbox (Entry widget)
+
 textbox = tk.Entry(root)
-textbox.place(x=50, y=30)  # Add some vertical padding
+textbox.place(x=50, y=30)  
 textbox.config(width=7)
 
 textbox0 = tk.Entry(root)
@@ -44,6 +47,9 @@ textbox7 = tk.Entry(root)
 textbox8 = tk.Entry(root)
 textbox9 = tk.Entry(root)
 
+global_x=0
+global_y=0
+
 
 def txt_in1():
     
@@ -58,7 +64,7 @@ def txt_in2():
 def txt_in3():
     
     textbox3.place(x=100, y=30) #1|2
-    textbox3.config(width=7)
+    textbox3.config(width=10)
 
 def txt_in4():
     
@@ -95,15 +101,30 @@ def txt_in9():
 
 
 def hide_button():
-    button.destroy() #----> Hides the button
+    button.destroy() #----> Hides the button---- useless fuction bukwalno trqbwa da q premestq w drugata 
 
 
 
 
 def get_text():
+    enrty1=textbox.get()
+    entry2=textbox0.get()
+
+
+    if (enrty1 == "" and entry2 =="") or enrty1 == "" or entry2 =="":
+        show_warning()
+
+
     numberx = int(textbox.get())
     numbery = int(textbox0.get())
+    
+    global global_x 
+    global_x = numberx
 
+    global global_y
+    global_y = numbery
+
+    
     if numberx ==1 and numbery==1:
         txt_in1()
     elif numberx ==2 and numbery ==1:
@@ -149,28 +170,103 @@ def get_text():
         txt_in7()
         txt_in8()
         txt_in9()
+    
     else:
        root.destroy() 
        show_error()
-        
-def print_matrix():   #el sedi za element
-
-    numberx = int(textbox.get())
-    numbery = int(textbox0.get())
-
-    row= numberx
-    column= numbery
 
 
-    el1=int(textbox1.get()) #1|1
-    el2=int(textbox2.get()) #2|1
-    el3=int(textbox3.get()) #1|2
-    el4=int(textbox4.get()) #2|2
-    el5=int(textbox5.get()) #3|1
-    el6=int(textbox6.get()) #3|2
-    el7=int(textbox7.get()) #1|3
-    el8=int(textbox8.get()) #2|3
-    el9=int(textbox9.get()) #3|3
+    
+    
+
+
+
+
+def get_matrix():   #el sedi za element||| tazi functiq shte e za wzemaneto na vuvedenite danni
+    matrix1=[]
+    
+    global global_x
+
+    global global_y
+
+    en1=textbox1.get()
+    en2=textbox2.get()
+    en3=textbox3.get()
+    en4=textbox4.get()
+    en5=textbox5.get()
+    en6=textbox6.get()
+    en7=textbox7.get()
+    en8=textbox8.get()
+    en9=textbox9.get()
+    
+
+    el1 = el2 = el3 = el4 = el5 = el6 = el7 = el8 = el9 = None
+
+
+    for cheky in range(9):
+        if en1 != "":
+            el1=int(textbox1.get()) 
+            print(cheky)
+        elif en2 != "":
+            el2=int(textbox2.get())
+            print(cheky)
+        elif en3 != "":
+            el3=int(textbox3.get())
+            print(cheky)
+        elif en4 != "":
+            el4=int(textbox4.get())
+            print(cheky)
+        elif en5 != "":
+            el5=int(textbox5.get())
+            print(cheky)
+        elif en6 != "":
+            el6=int(textbox6.get()) #3|2
+            print(cheky)
+        elif en7 != "":
+            el7=int(textbox7.get()) #1|3
+            print(cheky)
+        elif en8 != "":
+            el8=int(textbox8.get()) #2|3
+            print(cheky)
+        elif en9 != "":
+            el9=int(textbox9.get()) #3|3
+            print(cheky)
+
+
+
+
+    for row in range(global_x):
+        arr=[]
+
+        for column in range(global_y):
+
+            if row == 0 and column == 0:
+                arr.append(textbox1.get()) #1|1
+
+            elif row == 0 and column == 1:
+                arr.append(textbox3.get()) #1|2
+
+            elif row == 1 and column == 0:
+                arr.append(textbox2.get()) #2|1
+
+            elif row == 1 and column == 1:
+                arr.append(textbox4.get()) #2|2
+            
+            elif row == 2 and column == 0:
+                arr.append(textbox5.get()) #3|1
+
+
+
+
+        matrix1.append(arr)       
+
+    for row in range(global_x):
+        for column in range(global_y):
+            print(matrix1[row][column], end='')  
+        print()
+
+    button1.destroy()
+    
 
 
    
@@ -194,14 +290,21 @@ def mltp_commands():# poneje piton e smotan trqbwa da ima funkciq za nqkolko kom
     label.destroy()
     label1.destroy()
     label2.destroy()
-    smth()
+  
 
 
 
 
 
-button = tk.Button(root, text="Print Text", command=mltp_commands)
+button = tk.Button(root, text="Enter", command=mltp_commands)
 button.place(x=50, y=50)
+
+
+button1= tk.Button(root, text="ENTER el", command=get_matrix)
+button1.place(x=200, y= 200)
+
+
+
 
 #starting the window
 root.mainloop()
