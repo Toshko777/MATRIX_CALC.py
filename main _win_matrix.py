@@ -184,7 +184,8 @@ def get_text():
 
 def get_matrix():   #el sedi za element||| tazi functiq shte e za wzemaneto na vuvedenite danni
     matrix1=[]
-    
+
+
     global global_x
 
     global global_y
@@ -226,17 +227,36 @@ def get_matrix():   #el sedi za element||| tazi functiq shte e za wzemaneto na v
 
 
         matrix1.append(arr)       
+#----------------------------------------------------------------
+    def matrix_1():
+        Rows=global_x
+        Columns=global_y
+        matri1=[]
+        for rows in range(Rows):
+            a=[]
+            for columns in range(Columns):
+                if rows == columns:
+                    a.append(int(1))
+                else:
+                    a.append(int(0))
+            matri1.append(a)
+
+        for rows in range(Rows):
+            for columns in range(Columns):
+                print("(",matri1[rows][columns],")", end='')
+            print()
+    #----------------------------------------------------------------
+
 
     for row in range(global_x):
         for column in range(global_y):
             print("|",matrix1[row][column],"|", end='')  
         print()
 
+    matrix_1()
     button1.destroy()
     
 
-
-   
 
     
 
@@ -245,7 +265,7 @@ def smth():
     for i in range(5):
         for j in range(5):
             label32 = tk.Label(root, text=f"{i + 1}", font=("Arial", 14))
-        label32.pack(pady=5)  # Use pack() to add the label to the window
+        label32.pack(pady=5)  # nz probwam neshto tuk 
 
 
 
