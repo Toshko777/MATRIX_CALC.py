@@ -37,66 +37,37 @@ textbox0 = tk.Entry(root)
 textbox0.place(x=100, y=30)
 textbox0.config(width=7)
 
-textbox1 = tk.Entry(root)
-textbox2 = tk.Entry(root)
-textbox3 = tk.Entry(root)
-textbox4 = tk.Entry(root)
-textbox5 = tk.Entry(root)
-textbox6 = tk.Entry(root)
-textbox7 = tk.Entry(root)
-textbox8 = tk.Entry(root)
-textbox9 = tk.Entry(root)
+
+
+
+
+
+
 
 global_x=0
 global_y=0
 
+global_matrix=[]
 
-def txt_in1():
-    
-    textbox1.place(x=50, y=30)  #1|1
-    textbox1.config(width=7)
+#----------------------------------------------------------------------
+def matrix_1():
+    Rows=global_x
+    Columns=global_y
+    matri1=[]
+    for rows in range(Rows):
+        a=[]
+        for columns in range(Columns):
+            if rows == columns:
+                a.append(int(1))
+            else:
+                a.append(int(0))
+        matri1.append(a)
 
-def txt_in2():
-    
-    textbox2.place(x=50, y=50) #2|1
-    textbox2.config(width=7)
-
-def txt_in3():
-    
-    textbox3.place(x=100, y=30) #1|2
-    textbox3.config(width=7)
-
-def txt_in4():
-    
-    textbox4.place(x=100, y=50) #2|2
-    textbox4.config(width=7)
-
-def txt_in5():
-    
-    textbox5.place(x=50, y=70) #3|1
-    textbox5.config(width=7)
-
-def txt_in6():
-    
-    textbox6.place(x=100, y=70) #3|2
-    textbox6.config(width=7)
-
-def txt_in7():
-    
-    textbox7.place(x=150, y=30) #1|3
-    textbox7.config(width=7)
-
-def txt_in8():
-    
-    textbox8.place(x=150, y=50) #2|3
-    textbox8.config(width=7)
-
-def txt_in9():
-    
-    textbox9.place(x=150, y=70) #3|3
-    textbox9.config(width=7)
-
-
+    for rows in range(Rows):
+        for columns in range(Columns):
+            print("(",matri1[rows][columns],")", end='')
+        print()
+    #----------------------------------------------------------------
 
 
 
@@ -124,148 +95,69 @@ def get_text():
     global global_y
     global_y = numbery
 
-    
-    if numberx ==1 and numbery==1:
-        txt_in1()
-    elif numberx ==2 and numbery ==1:
-        txt_in1()
-        txt_in2()
-    elif numberx ==1 and numbery ==2:
-        txt_in1()
-        txt_in3()
-    elif numberx ==2 and numbery ==2:
-        txt_in1()
-        txt_in2()
-        txt_in3()
-        txt_in4()
-    elif numberx ==3 and numbery==1:
-        txt_in1()
-        txt_in2()
-        txt_in5()
-    elif numberx ==3 and numbery==2:
-        txt_in1()
-        txt_in2()
-        txt_in3()
-        txt_in4()
-        txt_in5()
-        txt_in6()
-    elif numberx == 1 and numbery==3:
-        txt_in1()
-        txt_in3()
-        txt_in7()
-    elif numberx == 2 and numbery==3:
-        txt_in1()
-        txt_in2()
-        txt_in3()
-        txt_in4()
-        txt_in7()
-        txt_in8()
-    elif numberx == 3 and numbery==3:
-        txt_in1()
-        txt_in2()
-        txt_in3()
-        txt_in4()
-        txt_in5()
-        txt_in6()
-        txt_in7()
-        txt_in8()
-        txt_in9()
-    
-    else:
-       root.destroy() 
-       show_error()
-
-
-    
-    
-
-
-
-
-def get_matrix():   #el sedi za element||| tazi functiq shte e za wzemaneto na vuvedenite danni
-    matrix1=[]
-
-
-    global global_x
-
-    global global_y
-
-
-    for row in range(global_x):
-        arr=[]
-
-        for column in range(global_y):
-
-            if row == 0 and column == 0:
-                arr.append(textbox1.get()) #1|1
-
-            elif row == 0 and column == 1:
-                arr.append(textbox3.get()) #1|2
-
-            elif row == 1 and column == 0:
-                arr.append(textbox2.get()) #2|1
-
-            elif row == 1 and column == 1:
-                arr.append(textbox4.get()) #2|2
-            
-            elif row == 2 and column == 0:
-                arr.append(textbox5.get()) #3|1
-            
-            elif row == 2 and column ==1:
-                arr.append(textbox6.get()) #3|2
-            
-            elif row == 2 and column == 2:
-                arr.append(textbox9.get()) #3|3
-            
-            elif row == 0 and column == 2:
-                arr.append(textbox7.get()) #1|3
-
-            elif row ==1 and column == 2:
-                arr.append(textbox8.get()) #2|3
-
-
-
-
-        matrix1.append(arr)       
-#----------------------------------------------------------------
-    def matrix_1():
-        Rows=global_x
-        Columns=global_y
-        matri1=[]
-        for rows in range(Rows):
-            a=[]
-            for columns in range(Columns):
-                if rows == columns:
-                    a.append(int(1))
-                else:
-                    a.append(int(0))
-            matri1.append(a)
-
-        for rows in range(Rows):
-            for columns in range(Columns):
-                print("(",matri1[rows][columns],")", end='')
-            print()
-    #----------------------------------------------------------------
-
-
-    for row in range(global_x):
-        for column in range(global_y):
-            print("|",matrix1[row][column],"|", end='')  
-        print()
-
-    matrix_1()
-    button1.destroy()
-    
+    global global_matrix
 
 
     
 
+    i=int(0)
+    j=int(0)
 
-def smth():
-    for i in range(5):
-        for j in range(5):
-            label32 = tk.Label(root, text=f"{i + 1}", font=("Arial", 14))
-        label32.pack(pady=5)  # nz probwam neshto tuk 
+    matrix2=[]
+    
+    
+    
+    for row in range(numberx):
+        arr2 = []
+
+        for column in range(numbery):
+
+            i = 50 * (column)  # Distance between columns
+            j = 30 * (row)     # Distance between rows
+
+
+        # Create a unique textbox for each cell
+            textbox_prime = tk.Entry(root, width=7)
+            textbox_prime.place(x=50 + i, y=30 + j)
+
+        # Function to create label at the same position as textbox
+            def make_clearpr(textbox=textbox_prime, x=50 + i, y=30 + j):
+                def clearpr(event=None):
+                # Retrieve content from textbox
+                    text_content = textbox.get()
+                    print(f"Text Content for {x},{y}: {text_content}")
+                # Create a label with the textbox content at the same position
+                    label_prime = tk.Label(root, text=text_content)
+                    label_prime.place(x=x, y=y)
+
+                # Store the integer value in arr2 if needed
+                    try:
+                        arr2.append(int(text_content))
+                    except ValueError:
+                        arr2.append(0)
+
+                # Hide the textbox
+                    textbox.place_forget()
+                return clearpr
+
+        # Bind the Enter key for each unique textbox
+            textbox_prime.bind("<Return>", make_clearpr())
+
+        matrix2.append(arr2)
+        global_matrix= matrix2
+        print(f"Row {row} content: {arr2}")
+
+
+
+    
+
+   
+    
+    button2.place(x=200, y=200)
+    
+
+    
+ 
 
 
 
@@ -277,9 +169,20 @@ def mltp_commands():# poneje piton e smotan trqbwa da ima funkciq za nqkolko kom
     label.destroy()
     label1.destroy()
     label2.destroy()
+    
   
+def print_matrix():
 
+    matrix_1()
 
+    print("Matrixp Contents:")
+    for row in range(global_x):
+        for column in range(global_y):
+            try:
+                print("|", global_matrix[row][column], "|", end=' ')
+            except IndexError:
+                print("Error: Index out of range for matrix2")
+        print()
 
 
 
@@ -287,8 +190,11 @@ button = tk.Button(root, text="Enter", command=mltp_commands)
 button.place(x=50, y=50)
 
 
-button1= tk.Button(root, text="ENTER el", command=get_matrix)
-button1.place(x=200, y= 200)
+button2 = tk.Button(root, text="Enter", command=print_matrix)
+
+
+
+
 
 
 #hi
