@@ -30,8 +30,8 @@ textbox0 = tk.Entry(root)
 textbox0.place(x=100, y=30)
 textbox0.config(width=7)
 
-
-
+textboxn = tk.Entry(root)
+textboxn.config(width=7)
 
 
 selected_option = tk.StringVar()
@@ -160,8 +160,6 @@ def get_text2():
 
 
 
-
-
 # Handle multiple commands
 def mltp_commands():
     get_text()
@@ -171,12 +169,6 @@ def mltp_commands():
     label.destroy()
     label1.destroy()
     label2.destroy()
-
-
-
-
-
-
 
 
 
@@ -258,6 +250,24 @@ def subt():
     print("-")
 
 
+def num_m():
+    global global_matrix, global_result
+    numb= int(textboxn.get())
+
+    global_result= [[x * numb for x in row] for row in global_matrix]
+    print("*")
+    
+
+def num_d():
+    global global_matrix, global_result
+    numb= int(textboxn.get())
+
+    global_result= [[x / numb for x in row] for row in global_matrix]
+    print("/")
+
+
+
+
 def mltpl2():
     print_matrix()
     radio_button1.place(x=200, y= 50)
@@ -268,7 +278,7 @@ def mltpl2():
     
 def selection():
     if selected_option.get() == "matrix_numb":
-        print("numb")
+        button6.place(x=200, y= 320)
     elif selected_option.get() == "matrix_matrix":
         button3.place(x=300, y= 120)
     elif selected_option.get() == "det":
@@ -282,6 +292,12 @@ def selection():
     elif selected_option.get() == "Sub":
         subt()
         button5.place(x=300, y= 220)
+    elif selected_option.get() == "mul":
+        num_m()
+        button5.place(x=300, y= 220)
+    elif selected_option.get() == "div":
+        num_d()
+        button5.place(x=300, y= 220)
 
     
            
@@ -292,6 +308,12 @@ def mltpl3():
     radio_button6.place(x=200, y= 200)
     confirm_raidobutton2.place(x=200, y= 220)
 
+
+def mltpl4():
+    radio_button7.place(x=200, y= 250)
+    radio_button8.place(x=200, y= 275)
+    textboxn.place(x=200, y=230)
+    confirm_raidobutton3.place(x=200, y= 300)
 
 # Buttons
 button = tk.Button(root, text="Enter", command=mltp_commands)
@@ -306,8 +328,11 @@ button4 = tk.Button(root, text="Print Matrix 2", command=mltpl3)
 
 button5 = tk.Button(root, text="Print RESULT", command=print_matrix3)
 
+button6 = tk.Button(root, text="start", command=mltpl4)
+
 confirm_raidobutton = ttk.Button(root, text="Confirm", command=selection)
 confirm_raidobutton2 = ttk.Button(root, text="Confirm", command=selection)
+confirm_raidobutton3 = ttk.Button(root, text="Confirm", command=selection)
 
 radio_button1 = ttk.Radiobutton(root, text="multiply/divide by number", variable=selected_option, value="matrix_numb")
 radio_button2 = ttk.Radiobutton(root, text="multiply/sum/subtract with matrix", variable=selected_option, value="matrix_matrix")
@@ -315,6 +340,8 @@ radio_button3 = ttk.Radiobutton(root, text="determinant of matrix", variable=sel
 radio_button4 = ttk.Radiobutton(root, text="Multiplication(*)", variable=selected_option, value="Mul")
 radio_button5 = ttk.Radiobutton(root, text="Sum(+)", variable=selected_option, value="Sum")
 radio_button6 = ttk.Radiobutton(root, text="Subtraction(-)", variable=selected_option, value="Sub")
+radio_button7 = ttk.Radiobutton(root, text="Multiplication(*)", variable=selected_option, value="mul")
+radio_button8 = ttk.Radiobutton(root, text="Division(/)", variable=selected_option, value="div")
 
 # Start the window
 root.mainloop()
