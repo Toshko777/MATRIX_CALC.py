@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
 
+
+
 def show_error():
     messagebox.showerror("Error", "An unexpected error occurred.")
 
@@ -108,11 +110,11 @@ def get_text():
                 except ValueError:
                     global_matrix[row][column] = 0  # Default to 0 if no valid input
 
-        button2.place(x=350, y=10)
+        button2.place(x=350, y=1)
 
     # Button to confirm matrix input
     confirm_button = tk.Button(root, text="Confirm Matrix", command=update_matrix)
-    confirm_button.place(x=200, y=10)
+    confirm_button.place(x=250, y=1)
 
 #-----------------------------------------------------------------------------------------------------------------------------
 
@@ -149,11 +151,11 @@ def get_text2():
                 except ValueError:
                     global_matrix2[row][column] = 0  # Default to 0 if no valid input
 
-        button4.place(x=550, y=10)
+        button4.place(x=550, y=1)
 
     # Button to confirm matrix input
     confirm_button2 = tk.Button(root, text="Confirm Matrix", command=update_matrix)
-    confirm_button2.place(x=450, y=10)
+    confirm_button2.place(x=450, y=1)
 
 #---------------------------------------------------------------------------------------------------
 
@@ -268,8 +270,17 @@ def num_d():
 
 
 
+def transponse():
+    global global_matrix, global_result
+
+    global_result = [list(row) for row in zip(*global_matrix)]
+
+    print("transponse")
+
+
 def mltpl2():
     print_matrix()
+    radio_button0.place(x=200, y= 25)
     radio_button1.place(x=200, y= 50)
     radio_button2.place(x=200, y= 75)
     radio_button3.place(x=200, y=100)
@@ -283,6 +294,9 @@ def selection():
         button3.place(x=300, y= 120)
     elif selected_option.get() == "det":
         print("det")
+    elif selected_option.get() == "transp":
+        transponse()
+        button5.place(x=300, y= 220)
     elif selected_option.get() == "Mul":
         mul()
         button5.place(x=300, y= 220)
@@ -315,6 +329,9 @@ def mltpl4():
     textboxn.place(x=200, y=230)
     confirm_raidobutton3.place(x=200, y= 300)
 
+
+
+
 # Buttons
 button = tk.Button(root, text="Enter", command=mltp_commands)
 button.place(x=50, y=50)
@@ -334,6 +351,8 @@ confirm_raidobutton = ttk.Button(root, text="Confirm", command=selection)
 confirm_raidobutton2 = ttk.Button(root, text="Confirm", command=selection)
 confirm_raidobutton3 = ttk.Button(root, text="Confirm", command=selection)
 
+
+radio_button0 = ttk.Radiobutton(root, text="Transponse", variable=selected_option, value="transp")
 radio_button1 = ttk.Radiobutton(root, text="multiply/divide by number", variable=selected_option, value="matrix_numb")
 radio_button2 = ttk.Radiobutton(root, text="multiply/sum/subtract with matrix", variable=selected_option, value="matrix_matrix")
 radio_button3 = ttk.Radiobutton(root, text="determinant of matrix", variable=selected_option, value="det")
