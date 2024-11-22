@@ -198,14 +198,14 @@ def print_matrix():
 
 def print_matrix2():
     
-    # Create a new Toplevel window
+    
     matrix_window2 = tk.Toplevel(root)
     matrix_window2.title("Matrix2 Contents")
     matrix_window2.geometry("200x200")
 
     for row in range(global_x):
         for column in range(global_y):
-            # Display each matrix element in the new window
+            
             value = global_matrix2[row][column]
             label = tk.Label(matrix_window2, text=f"{value}", borderwidth=1, relief="solid", width=5, height=2)
             label.grid(row=row, column=column, padx=5, pady=5)
@@ -214,14 +214,14 @@ def print_matrix2():
 
 def print_matrix3():
     
-    # Create a new Toplevel window
+   
     matrix_window3 = tk.Toplevel(root)
     matrix_window3.title("Matrix3 Contents")
     matrix_window3.geometry("200x200")
 
     for row in range(global_x):
         for column in range(global_y):
-            # Display each matrix element in the new window
+            
             value = global_result[row][column]
             label = tk.Label(matrix_window3, text=f"{value}", borderwidth=1, relief="solid", width=5, height=2)
             label.grid(row=row, column=column, padx=5, pady=5)
@@ -232,7 +232,12 @@ def print_matrix3():
 def mul():
     global global_matrix, global_matrix2, global_result
 
-    global_result = [[global_matrix[x][y] * global_matrix2[x][y] for y in range(global_y)] for x in range(global_x)]
+    global_result= [[0 for _ in range(len(global_matrix2[0]))] for _ in range(len(global_matrix))]
+
+    for i in range(len(global_matrix)):
+        for j in range(len(global_matrix2[0])):
+            for k in range(len(global_matrix2)):
+                global_result[i][j] += global_matrix[i][k] * global_matrix2[k][j]
 
     print("*")
 
@@ -254,7 +259,7 @@ def subt():
 
 def num_m():
     global global_matrix, global_result
-    numb= int(textboxn.get())
+    numb= float(textboxn.get())
 
     global_result= [[x * numb for x in row] for row in global_matrix]
     print("*")
@@ -262,7 +267,7 @@ def num_m():
 
 def num_d():
     global global_matrix, global_result
-    numb= int(textboxn.get())
+    numb= float(textboxn.get())
 
     global_result= [[x / numb for x in row] for row in global_matrix]
     print("/")
