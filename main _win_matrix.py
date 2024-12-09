@@ -47,7 +47,7 @@ global_matrix2 = []
 
 global_result = []
 
-
+global_tr_check = 0 #a global int for the transpose function, if the matrix is not symetrical
 
 #--------------------------------------------------------------------------------------------
 # Define identity matrix
@@ -196,7 +196,7 @@ def print_matrix():
 
 
 
-def print_matrix2():
+def print_matrix2():#print the second matrix
     
     
     matrix_window2 = tk.Toplevel(root)
@@ -212,24 +212,37 @@ def print_matrix2():
 
 
 
-def print_matrix3():
-    
+def print_matrix3():#print the result matrix
+    global global_tr_check
    
+    
     matrix_window3 = tk.Toplevel(root)
     matrix_window3.title("Matrix3 Contents")
     matrix_window3.geometry("200x200")
+    
+    #the if else is used to print the transponse of a matrix that is non symetrical
+    if global_tr_check == 0:
+        for row in range(global_x):
+            for column in range(global_y):
+                
+                value = global_result[row][column]
+                label = tk.Label(matrix_window3, text=f"{value}", borderwidth=1, relief="solid", width=5, height=2)
+                label.grid(row=row, column=column, padx=5, pady=5)
 
-    for row in range(global_x):
-        for column in range(global_y):
-            
-            value = global_result[row][column]
-            label = tk.Label(matrix_window3, text=f"{value}", borderwidth=1, relief="solid", width=5, height=2)
-            label.grid(row=row, column=column, padx=5, pady=5)
+        global_tr_check= 0
+    else:
+        for row in range(global_y):
+            for column in range(global_x):
+                
+                value = global_result[row][column]
+                label = tk.Label(matrix_window3, text=f"{value}", borderwidth=1, relief="solid", width=5, height=2)
+                label.grid(row=row, column=column, padx=5, pady=5)
 
+        global_tr_check=0
     
 
 
-def mul():
+def mul():#Matrix multiplication
     global global_matrix, global_matrix2, global_result
 
     global_result= [[0 for _ in range(len(global_matrix2[0]))] for _ in range(len(global_matrix))]
@@ -242,14 +255,14 @@ def mul():
     print("*")
 
 
-def sumt():
+def sumt():#sum of the two matrices
     global global_matrix, global_matrix2, global_result
 
     global_result = [[global_matrix[x][y] + global_matrix2[x][y] for y in range(global_y)] for x in range(global_x)]
 
     print("+")
 
-def subt():
+def subt():#matrix1 - matrix 2
     global global_matrix, global_matrix2, global_result
 
     global_result = [[global_matrix[x][y] - global_matrix2[x][y] for y in range(global_y)] for x in range(global_x)]
@@ -257,7 +270,7 @@ def subt():
     print("-")
 
 
-def num_m():
+def num_m():#matrix multiplication with scalar
     global global_matrix, global_result
     numb= float(textboxn.get())
 
@@ -265,7 +278,7 @@ def num_m():
     print("*")
     
 
-def num_d():
+def num_d():#matrix division with scalar
     global global_matrix, global_result
     numb= float(textboxn.get())
 
@@ -275,12 +288,13 @@ def num_d():
 
 
 
-def transponse():
-    global global_matrix, global_result
+def transponse():# Matrix transponse
+    global global_matrix, global_result, global_tr_check
 
     global_result = [list(row) for row in zip(*global_matrix)]
 
     print("transponse")
+    global_tr_check=1
 
 
 def mltpl2():
@@ -352,11 +366,13 @@ button5 = tk.Button(root, text="Print RESULT", command=print_matrix3)
 
 button6 = tk.Button(root, text="start", command=mltpl4)
 
+#confirm buttons
 confirm_raidobutton = ttk.Button(root, text="Confirm", command=selection)
 confirm_raidobutton2 = ttk.Button(root, text="Confirm", command=selection)
 confirm_raidobutton3 = ttk.Button(root, text="Confirm", command=selection)
 
 
+#Radio buttons
 radio_button0 = ttk.Radiobutton(root, text="Transponse", variable=selected_option, value="transp")
 radio_button1 = ttk.Radiobutton(root, text="multiply/divide by number", variable=selected_option, value="matrix_numb")
 radio_button2 = ttk.Radiobutton(root, text="multiply/sum/subtract with matrix", variable=selected_option, value="matrix_matrix")
